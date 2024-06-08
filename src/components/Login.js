@@ -1,15 +1,16 @@
 import { Firestore } from "firebase/firestore";
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 const Login = () => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const { signup, currentUser } = useAuth();
+	const { login, currentUser } = useAuth();
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -17,9 +18,10 @@ const Login = () => {
 		try {
 			setError("");
 			setLoading(true);
-			await signup(emailRef.current.value, passwordRef.current.value);
+			await login(emailRef.current.value, passwordRef.current.value);
+			navigate("/");
 		} catch {
-			setError("failaed  to create account");
+			setError("Failed to sign in");
 		}
 
 		setLoading(false);
@@ -38,7 +40,7 @@ const Login = () => {
 							<Form.Control type='email' ref={emailRef} required />
 						</Form.Group>
 						<Form.Group id='password'>
-							<Form.Label>password</Form.Label>
+							<Form.Label>Password</Form.Label>
 							<Form.Control type='password' ref={passwordRef} required />
 						</Form.Group>
 
@@ -49,7 +51,7 @@ const Login = () => {
 				</Card.Body>
 			</Card>
 			<div className='w-100 text-center mt-2'>
-				need an account? <Link to='/signup' />
+				Need an account? <Link to='/signup'>Sign Up</Link>
 			</div>
 		</div>
 	);

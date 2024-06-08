@@ -14,12 +14,14 @@ function App() {
 			<div className='w-100' style={{ maxWidth: "400px" }}>
 				<Router>
 					<AuthProvider>
+            
 						<Routes>
 							{/* exact does same as of all other with *  */}
 							<Route exact path='/' element={<Dashboard />} />
 							<Route path='/signup' element={<Signup />} />
 							<Route path='/login' element={<Login />} />
 						</Routes>
+
 					</AuthProvider>
 				</Router>
 			</div>
