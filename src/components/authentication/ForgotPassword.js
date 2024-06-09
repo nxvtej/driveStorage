@@ -2,7 +2,8 @@ import { Firestore } from "firebase/firestore";
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
+import CenteredContainer from "./CenteredContainer";
 
 const ForgotPassword = () => {
 	const emailRef = useRef();
@@ -29,7 +30,7 @@ const ForgotPassword = () => {
 	}
 
 	return (
-		<div>
+		<CenteredContainer>
 			<Card>
 				<Card.Body>
 					<h2 className='text-center mb-4'>password reset</h2>
@@ -55,7 +56,7 @@ const ForgotPassword = () => {
 			<div className='w-100 text-center mt-2'>
 				Need an account? <Link to='/signup'>Sign Up</Link>
 			</div>
-		</div>
+		</CenteredContainer>
 	);
 };
 

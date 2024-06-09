@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import CenteredContainer from "./CenteredContainer";
 
 const UpdateProfile = () => {
 	const navigate = useNavigate();
@@ -36,7 +37,7 @@ const UpdateProfile = () => {
 
 		Promise.all(promises)
 			.then(() => {
-				navigate("/");
+				navigate("/user");
 			})
 			.catch(() => {
 				setError("Failed to update account");
@@ -47,7 +48,7 @@ const UpdateProfile = () => {
 	}
 
 	return (
-		<div>
+		<CenteredContainer>
 			<Card>
 				<Card.Body>
 					<h2 className='text-center mb-4'>Update Profile</h2>
@@ -85,9 +86,9 @@ const UpdateProfile = () => {
 				</Card.Body>
 			</Card>
 			<div className='w-100 text-center mt-2'>
-				<Link to='/'>Cancel</Link>
+				<Link to='/user'>Cancel</Link>
 			</div>
-		</div>
+		</CenteredContainer>
 	);
 };
 
